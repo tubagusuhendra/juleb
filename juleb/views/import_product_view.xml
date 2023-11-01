@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+
+
+		<record model="ir.ui.view" id="import_product_wizard_view">
+		        <field name="name">Import Product</field>
+		        <field name="model">import.product.wizard</field>
+		        <field name="type">form</field>
+		        <field name="arch" type="xml">
+                <form string="Import Product">
+                    <group>
+                        <field name="filename" invisible="1" />
+                        <field name="file" widget="binary" filename="filename" />
+                    </group>
+                    <footer>
+                        <button name="create_product" string="Save" type="object" class="btn-primary"/>
+                        <button string="Discard" class="btn-default" special="cancel" />
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_import_product_wizard_view" model="ir.actions.act_window">
+            <field name="name">Import Product</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">import.product.wizard</field>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="import_product_wizard_view"/>
+            <field name="target">new</field>
+        </record>
+
+        <menuitem id="base.menu_fleet_import_register" name="Import Product"
+            parent="stock.menu_stock_inventory_control"
+            action="action_import_product_wizard_view" sequence="20"/>
+</odoo>
